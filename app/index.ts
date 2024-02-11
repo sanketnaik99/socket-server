@@ -12,7 +12,7 @@ const corsConfig = cors();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://socket-test-kohl.vercel.app",
+    origin: ["https://socket-test-kohl.vercel.app", "http://localhost:3000"],
   },
 });
 const port = process.env.PORT;
