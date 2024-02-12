@@ -18,6 +18,8 @@ const io = new Server(httpServer, {
 const port = process.env.PORT;
 
 io.on("connection", (socket) => {
+  console.log("a user connected", socket.id);
+
   socket.emit("hello", {
     message: "hello from server!",
   });
@@ -26,9 +28,9 @@ io.on("connection", (socket) => {
     console.info("user disconnected", socket);
   });
 
-  socket.on("hello", (data) => {
-    socket.broadcast.emit("hello", {
-      message: "Broadcasting from server!",
+  socket.on("send-alert", (data) => {
+    socket.broadcast.emit("receive-alert", {
+      user: data.user,
     });
   });
 });
